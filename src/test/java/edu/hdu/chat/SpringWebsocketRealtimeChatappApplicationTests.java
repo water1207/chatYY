@@ -1,4 +1,4 @@
-package com.arisusantolie.springwebsocketrealtimechatapp;
+package edu.hdu.chat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

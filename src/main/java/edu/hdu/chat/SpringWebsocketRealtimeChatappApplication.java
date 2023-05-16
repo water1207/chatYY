@@ -1,4 +1,4 @@
-package com.arisusantolie.springwebsocketrealtimechatapp;
+package edu.hdu.chat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

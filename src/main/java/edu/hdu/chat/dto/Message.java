@@ -1,4 +1,4 @@
-package com.arisusantolie.springwebsocketrealtimechatapp.dto;
+package edu.hdu.chat.dto;
 
 import org.springframework.data.relational.core.sql.In;
 

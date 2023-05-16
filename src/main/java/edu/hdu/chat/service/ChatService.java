@@ -1,15 +1,16 @@
-package com.arisusantolie.springwebsocketrealtimechatapp.service;
+package edu.hdu.chat.service;
 
-import com.arisusantolie.springwebsocketrealtimechatapp.dto.*;
+import edu.hdu.chat.dto.GoodMessage;
+import edu.hdu.chat.dto.GroupMessage;
+import edu.hdu.chat.dto.Message;
+import edu.hdu.chat.dto.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -70,5 +71,13 @@ public class ChatService {
 
     public List<GroupMessage> getHistoryGroupMessage(Integer gId) {
         return jdbcTemplate.query("select * from group_messages where g_id = ?", new BeanPropertyRowMapper<GroupMessage>(GroupMessage.class), gId);
+    }
+
+    public List<Map<String,Object>> getHistoryGroupMessage2(Integer gId) {
+        return jdbcTemplate.queryForList("SELECT gm.*, u.`name`, u.head_img " +
+                "FROM group_messages gm " +
+                "JOIN users u ON gm.u_id = u.u_id " +
+                "WHERE gm.g_id = ? " +
+                "ORDER BY gm.time asc", gId);
     }
 }

@@ -1,4 +1,4 @@
-package com.arisusantolie.springwebsocketrealtimechatapp.dto;
+package edu.hdu.chat.dto;
 
 import org.springframework.data.relational.core.sql.In;
 
@@ -8,7 +8,6 @@ public class GroupMessage {
     private Integer id;
     private Integer g_id;
     private Integer u_id;
-
     private String content;
 
     private Date time;

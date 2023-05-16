@@ -1,4 +1,4 @@
-package com.arisusantolie.springwebsocketrealtimechatapp.dto;
+package edu.hdu.chat.dto;
 
 public class MessageGroupDTO extends MessageDTO{
     private Integer groupId;

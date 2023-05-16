@@ -1,4 +1,4 @@
-package com.arisusantolie.springwebsocketrealtimechatapp.config;//package com.arisusantolie.springwebsocketrealtimechatapp.config;
+package edu.hdu.chat.config;//package com.arisusantolie.springwebsocketrealtimechatapp.config;
 //
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

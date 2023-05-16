@@ -1,8 +1,7 @@
-package com.arisusantolie.springwebsocketrealtimechatapp.service;
+package edu.hdu.chat.service;
 
-import com.arisusantolie.springwebsocketrealtimechatapp.dto.Group;
-import com.arisusantolie.springwebsocketrealtimechatapp.dto.Message;
-import com.arisusantolie.springwebsocketrealtimechatapp.dto.UserInfo;
+import edu.hdu.chat.dto.Group;
+import edu.hdu.chat.dto.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
