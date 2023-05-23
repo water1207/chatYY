@@ -1,6 +1,6 @@
 package edu.hdu.chat.service;
 
-import edu.hdu.chat.dto.GoodMessage;
+import edu.hdu.chat.dto.GMPro;
 import edu.hdu.chat.dto.GroupMessage;
 import edu.hdu.chat.dto.Message;
 import edu.hdu.chat.dto.UserInfo;
@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -39,25 +38,14 @@ public class ChatService {
     public void sendMessageGroup(GroupMessage message) {
         jdbcTemplate.update("INSERT INTO `group_messages`(`g_id`, `u_id`, `content`) " +
                 "VALUES (?,?,?)",message.getG_id(), message.getU_id(), message.getContent());
-        simpMessagingTemplate.convertAndSend("/topic/messages/group/" + message.getG_id(), message);
 
-    }
-    // 发送标准化数据
-    public void sendGoodMessage(Message message) {
-        Date time = new Date(System.currentTimeMillis());
-        jdbcTemplate.update("insert into messages (from, to, content, time) " +
-                "values (?,?,?,?)",message.getFrom(),message.getTo(),message.getContent(),time);
-        UserInfo sender = getUserInfo(message.getFrom());
-        System.out.println("sender" + sender);
-        UserInfo receiver = getUserInfo(message.getTo());
-        System.out.println("receiver" + receiver);
-        GoodMessage goodMessage = new GoodMessage(
-                sender,
-                receiver,
-                message.getContent(),
-                time
-        );
-        simpMessagingTemplate.convertAndSend("/topic/messages/" + message.getTo(), message);
+        UserInfo user = getUserInfo(message.getU_id());
+        GMPro gmp = new GMPro(message);
+        gmp.setName(user.getName());
+        gmp.setHead_img(user.getHead_img());
+
+        simpMessagingTemplate.convertAndSend("/topic/messages/group/" + message.getG_id(), gmp);
+
     }
 
     public List<Message> getHistoryMessage(Integer from, Integer to){
