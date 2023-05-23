@@ -32,20 +32,16 @@ public class ChatService {
 
     public void sendMessage(Message message) {
         System.out.println("ChatService" + message.toString());
-        Date time = new Date(System.currentTimeMillis());
-        jdbcTemplate.update("insert into messages (`from`, `to`, `content`, `time`) " +
-                "values (?,?,?,?)",message.getFrom(),message.getTo(),message.getContent(),time);
-        message.setTime(time);
+        jdbcTemplate.update("insert into messages (`from`, `to`, `content`) " +
+                "values (?,?,?)",message.getFrom(),message.getTo(),message.getContent());
         simpMessagingTemplate.convertAndSend("/topic/messages/" + message.getTo(), message);
     }
     public void sendMessageGroup(GroupMessage message) {
-        Date time = new Date(System.currentTimeMillis());
-        jdbcTemplate.update("INSERT INTO `group_messages`(`g_id`, `u_id`, `content`, `time`) " +
-                "VALUES (?,?,?,? )",message.getG_id(), message.getU_id(), message.getContent(), time);
+        jdbcTemplate.update("INSERT INTO `group_messages`(`g_id`, `u_id`, `content`) " +
+                "VALUES (?,?,?)",message.getG_id(), message.getU_id(), message.getContent());
         simpMessagingTemplate.convertAndSend("/topic/messages/group/" + message.getG_id(), message);
 
     }
-
     // 发送标准化数据
     public void sendGoodMessage(Message message) {
         Date time = new Date(System.currentTimeMillis());
