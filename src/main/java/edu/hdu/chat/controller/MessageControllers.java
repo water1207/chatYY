@@ -45,10 +45,6 @@ public class MessageControllers {
     public List<Map<String, Object>> getHistoryGroupMessage2(@RequestParam("g_id") Integer gId) {
         return chatService.getHistoryGroupMessage2(gId);
     }
-    /*@RequestMapping("getHistoryGroupMessage")
-    public List<GroupMessage> getHistoryGroupMessage(@RequestParam("g_id") Integer gId) {
-        return chatService.getHistoryGroupMessage(gId);
-    }*/
 
     // 获取所有用户
     @RequestMapping("/fetchAllUsers")
@@ -72,5 +68,10 @@ public class MessageControllers {
     @RequestMapping("/userInfo")
     public UserInfo demo(@RequestParam("u_id") Integer uId) {
         return chatService.getUserInfo(uId);
+    }
+
+    @RequestMapping("/fetchGroupMember")
+    public List<Map<String, Object>> fetchGroupMember(@RequestParam("g_id") Integer gId){
+        return userAndGroupService.fetchMemberByGroupId(gId);
     }
 }

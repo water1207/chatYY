@@ -32,4 +32,10 @@ public class UserAndGroupService {
 
         return groupList;
     }
-}
+
+    public List<Map<String, Object>> fetchMemberByGroupId(Integer gId){
+        return
+                jdbcTemplate.queryForList("select u.* from users u join group_members gm On u.u_id = gm.u_id where gm.g_id = ?"
+                        , gId);
+    }
+ }

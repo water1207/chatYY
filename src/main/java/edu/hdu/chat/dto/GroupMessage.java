@@ -9,7 +9,6 @@ public class GroupMessage {
     private Integer g_id;
     private Integer u_id;
     private String content;
-
     private Date time;
 
     public GroupMessage(Integer id, Integer g_id, Integer u_id, String content, Date time) {
