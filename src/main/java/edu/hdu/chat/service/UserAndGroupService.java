@@ -32,6 +32,12 @@ public class UserAndGroupService {
 
         return groupList;
     }
+    public List<Group> fetchAllGroups() {
+        List<Group> groupList=jdbcTemplate.query("SELECT * FROM `groups`"
+                , new BeanPropertyRowMapper<Group>(Group.class));
+
+        return groupList;
+    }
 
     public List<Map<String, Object>> fetchMemberByGroupId(Integer gId){
         return

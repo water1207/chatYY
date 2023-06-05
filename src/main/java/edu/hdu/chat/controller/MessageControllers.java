@@ -64,6 +64,12 @@ public class MessageControllers {
         return userAndGroupService.fetchMyGroups(uId);
     }
 
+    // 获取全部群组
+    @RequestMapping("/fetchAllGroups")
+    public List<Group> fetchMyGroups() {
+        return userAndGroupService.fetchAllGroups();
+    }
+
     // 获取个人信息
     @RequestMapping("/userInfo")
     public UserInfo demo(@RequestParam("u_id") Integer uId) {
