@@ -25,6 +25,11 @@ public class GroupService {
     public void addGroup(Integer gId, Integer uId) {
         String sql = "insert ignore into group_members value(?,?)";
         int affected = jdbcTemplate.update(sql, gId, uId);
-        System.out.println("加入群组"+affected);
+        System.out.println(uId+"加入群组"+gId+" res: " + affected);
+    }
+
+    public void exitGroup(Integer gId, Integer uId) {
+        String sql = "delete FROM group_members where g_id="+gId+" and u_id="+uId;
+        int update = jdbcTemplate.update(sql);
     }
 }

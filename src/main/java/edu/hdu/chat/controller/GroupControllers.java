@@ -22,9 +22,13 @@ public class GroupControllers {
     }
 
     @RequestMapping("/addGroup")
-    public void addGroup(@RequestParam("gId") Integer gId, @RequestParam("uId") Integer uId) {
+    public void addGroup(@RequestParam("g_id") Integer gId, @RequestParam("u_id") Integer uId) {
         groupService.addGroup(gId, uId);
     }
 
+    @RequestMapping("/exitGroup")
+    public void exitGroup(@RequestParam("g_id") Integer gId, @RequestParam("u_id") Integer uId) {
+        groupService.exitGroup(gId, uId);
+    }
 
 }
